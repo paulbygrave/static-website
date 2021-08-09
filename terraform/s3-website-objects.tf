@@ -22,8 +22,8 @@ resource "aws_s3_bucket_object" "error" {
 resource "aws_s3_bucket_object" "logo" {
   bucket       = aws_s3_bucket.website_bucket.id
   acl          = "public-read"
-  key          = "images/checkout2.png"
-  source       = "${path.module}/files/images/checkout2.png"
+  key          = "checkout2.png"
+  source       = "${path.module}/files/checkout2.png"
   content_type = "image/jpeg"
-  etag         = filemd5("${path.module}/files/images/checkout2.png")
+  etag         = filemd5("${path.module}/files/checkout2.png")
 }
