@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "website" {
-  bucket = "${local.name}.com"
+  bucket = "${local.domain_name}"
   acl    = "public-read"
 
   website {
@@ -17,8 +17,8 @@ resource "aws_s3_bucket" "website" {
   }
 
   tags = {
-    Name    = "${local.name}-website-bucket"
-    Project = "${local.name}.com"
+    Name    = "${local.domain_name}-website-bucket"
+    Project = "${local.domain_name}"
   }
 }
 
@@ -53,6 +53,6 @@ resource "aws_s3_bucket" "subdomain" {
 
   tags = {
     Name    = "${local.domain_name}-redirect-bucket"
-    Project = "${local.domain_name}.com"
+    Project = "${local.domain_name}"
   }
 }
