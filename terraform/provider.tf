@@ -9,5 +9,5 @@ terraform {
 
 provider "aws" {
   profile = "default"
-  region  = "eu-west-2"
+  region  = "us-west-2"
 }
