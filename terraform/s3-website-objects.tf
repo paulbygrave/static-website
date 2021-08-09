@@ -1,5 +1,5 @@
 resource "aws_s3_bucket_object" "index" {
-  bucket       = aws_s3_bucket.website.id
+  bucket       = aws_s3_bucket.website_bucket.id
   key          = "index.html"
   source       = "${path.module}/files/index.html"
   content_type = "text/html"
@@ -7,7 +7,7 @@ resource "aws_s3_bucket_object" "index" {
 }
 
 resource "aws_s3_bucket_object" "error" {
-  bucket       = aws_s3_bucket.website.id
+  bucket       = aws_s3_bucket.website_bucket.id
   key          = "error.html"
   source       = "${path.module}/files/error.html"
   content_type = "text/html"
@@ -15,7 +15,7 @@ resource "aws_s3_bucket_object" "error" {
 }
 
 resource "aws_s3_bucket_object" "logo" {
-  bucket = aws_s3_bucket.website.id
+  bucket = aws_s3_bucket.website_bucket.id
   key    = "checkout2.png"
   source = "${path.module}/files/checkout2.png"
   etag   = filemd5("${path.module}/files/checkout2.png")
