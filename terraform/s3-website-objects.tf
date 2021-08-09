@@ -1,5 +1,5 @@
 resource "aws_s3_bucket_object" "index" {
-  bucket = resource.aws_s3_bucket.website.name
+  bucket = aws_s3_bucket.website.name
   key    = "index.html"
   source = "${path.module}/files/index.html"
 
