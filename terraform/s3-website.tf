@@ -1,6 +1,18 @@
 resource "aws_s3_bucket" "website" {
   bucket = var.domain
   acl    = "public-read"
+  policy = <<EOF
+    {
+      "Version":"2008-10-17",
+      "Statement":[{
+        "Sid":"AllowPublicRead",
+        "Effect":"Allow",
+        "Principal": {"AWS": "*"},
+        "Action":["s3:GetObject"],
+        "Resource":["arn:aws:s3:::${var.domain}/*"]
+      }]
+    }
+  EOF
 
   website {
     index_document = "index.html"
@@ -16,18 +28,7 @@ resource "aws_s3_bucket" "website" {
     enabled = true
   }
 
-  policy = <<EOF
-    {
-      "Version":"2008-10-17",
-      "Statement":[{
-        "Sid":"AllowPublicRead",
-        "Effect":"Allow",
-        "Principal": {"AWS": "*"},
-        "Action":["s3:GetObject"],
-        "Resource":["arn:aws:s3:::${var.domain}/*"]
-      }]
-    }
-  EOF
+
 
   tags = {
     Name    = "${var.domain}-website-bucket"
