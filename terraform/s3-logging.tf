@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "logs" {
-  bucket = "${local.domain_name}-log-bucket"
+  bucket = "${var.domain}-log-bucket"
   acl    = "log-delivery-write"
 }
 

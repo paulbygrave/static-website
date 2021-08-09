@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "website" {
-  bucket = "${local.domain_name}"
+  bucket = var.domain
   acl    = "public-read"
 
   website {
@@ -16,43 +16,35 @@ resource "aws_s3_bucket" "website" {
     enabled = true
   }
 
+  policy = <<EOF
+    {
+      "Version":"2008-10-17",
+      "Statement":[{
+        "Sid":"AllowPublicRead",
+        "Effect":"Allow",
+        "Principal": {"AWS": "*"},
+        "Action":["s3:GetObject"],
+        "Resource":["arn:aws:s3:::${var.domain}/*"]
+      }]
+    }
+  EOF
+
   tags = {
-    Name    = "${local.domain_name}-website-bucket"
-    Project = "${local.domain_name}"
+    Name    = "${var.domain}-website-bucket"
+    Project = "${var.domain}"
   }
-}
-
-resource "aws_s3_bucket_policy" "website" {
-  bucket = aws_s3_bucket.website.id
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Id      = "WebsiteBucketPolicy"
-    Statement = [
-      {
-        Sid       = "IPAllow"
-        Effect    = "Allow"
-        Principal = "*"
-        Action    = "s3:GetObject"
-        Resource = [
-          aws_s3_bucket.website.arn,
-          "${aws_s3_bucket.website.arn}/*",
-        ]
-      }
-    ]
-  })
 }
 
 resource "aws_s3_bucket" "subdomain" {
-  bucket = "www.${local.domain_name}"
+  bucket = "www.${var.domain}"
   acl    = "public-read"
 
   website {
-    redirect_all_requests_to = "http://${local.domain_name}"
+    redirect_all_requests_to = "http://${var.domain}"
   }
 
   tags = {
-    Name    = "${local.domain_name}-redirect-bucket"
-    Project = "${local.domain_name}"
+    Name    = "${var.domain}-redirect-bucket"
+    Project = "${var.domain}"
   }
 }
