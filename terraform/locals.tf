@@ -1,7 +1,7 @@
-resource "random_pet" "id" {
+resource "random_pet" "name" {
   length = 2
 }
 
 locals {
-  name = random_pet.id
+  name = random_pet.name.id
 }

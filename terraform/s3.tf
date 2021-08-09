@@ -4,6 +4,6 @@ resource "aws_s3_bucket" "website" {
 
   tags = {
     Name    = "${local.name}-website-bucket"
-    Project = local.name
+    Project = "${local.name}"
   }
 }
