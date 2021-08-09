@@ -13,9 +13,9 @@ The solution will resolve both "wundaboy.com" and "www.wundaboy.com" to the stat
 ## Justification
 
 I went with this solution for 3 main reasons:
-1. The primary objective was to deliver a basic website with test and an image. That fits the description of a static website, and S3 is a brilliant tool for hosting static sites without having to deploy resources which require ongoing management (e.g. EC2 instances).
-1. This solution offers scalability as standard, and leverages entirely AWS managed services to minimise maintenance burden on the client. By utilising Cloudfront we can ensure rapid content delivery and add additional security and functionality over and above simple S3 bucket hosting.
-1. 
+1. The primary objective was to deliver a basic website with text and an image. That fits the description of a static website, and S3 is a brilliant tool for hosting static sites without having to deploy resources which require ongoing management (e.g. EC2 instances).
+1. This solution offers scalability as standard, and leverages entirely AWS managed services to minimise maintenance burden on the client. By utilising Cloudfront we can ensure rapid content delivery and add additional security and caching functionality over and above simple S3 bucket hosting.
+1. The solution is cost effective, we could even remove the Cloudfront distributions if necessary to reduce costs further (at the cost of content serving speed).
 
 ## Monitoring/Alerting
 
@@ -28,4 +28,3 @@ If further time were to be spent on this solution I would use an Origin Access I
 ## Automation
 
 I automated the deployment of this solution by linking Terraform Cloud to the GitHub repository. This gave me the ability to automatically plan/apply my changes without having to setup a full CI pipeline, and Terraform Cloud takes care of state/locking etc. The downside is that I was then limited in automated testing, if this were a production solution I would add stages in beforehand to perform checkov/tfsec validation of my code before plan stage.
-
