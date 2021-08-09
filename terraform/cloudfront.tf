@@ -5,9 +5,6 @@ resource "aws_cloudfront_distribution" "cdn" {
     domain_name = "${var.domain}.s3.amazonaws.com"
   }
 
-  # If using route53 aliases for DNS we need to declare it here too, otherwise we'll get 403s.
-  aliases = ["${var.domain}"]
-
   enabled             = true
   default_root_object = "index.html"
 
