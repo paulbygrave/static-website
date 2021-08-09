@@ -35,8 +35,8 @@ resource "aws_s3_bucket_policy" "website" {
         Principal = "*"
         Action    = "s3:GetObject"
         Resource = [
-          aws_s3_bucket.website.arn,
-          "${aws_s3_bucket.website.arn}/*",
+          aws_s3_bucket.website_bucket.arn,
+          "${aws_s3_bucket.website_bucket.arn}/*",
         ]
       }
     ]
