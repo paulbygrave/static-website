@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "website" {
-  bucket = "${local.name}-website"
+  bucket = "${local.name}.com"
   acl    = "public-read"
 
   website {
@@ -18,7 +18,7 @@ resource "aws_s3_bucket" "website" {
 
   tags = {
     Name    = "${local.name}-website-bucket"
-    Project = "${local.name}"
+    Project = "${local.name}.com"
   }
 }
 
@@ -41,4 +41,18 @@ resource "aws_s3_bucket_policy" "website" {
       }
     ]
   })
+}
+
+resource "aws_s3_bucket" "subdomain" {
+  bucket = "www.${local.name}.com"
+  acl    = "public-read"
+
+  website {
+    redirect_all_requests_to = "http://wundaboy.com"
+  }
+
+  tags = {
+    Name    = "${local.name}-redirect-bucket"
+    Project = "${local.name}.com"
+  }
 }
