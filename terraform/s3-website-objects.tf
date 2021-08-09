@@ -1,3 +1,4 @@
+# Our index.html object
 resource "aws_s3_bucket_object" "index" {
   bucket       = aws_s3_bucket.website_bucket.id
   acl          = "public-read"
@@ -7,6 +8,7 @@ resource "aws_s3_bucket_object" "index" {
   etag         = filemd5("${path.module}/files/index.html")
 }
 
+# Our error.html object
 resource "aws_s3_bucket_object" "error" {
   bucket       = aws_s3_bucket.website_bucket.id
   acl          = "public-read"
@@ -16,6 +18,7 @@ resource "aws_s3_bucket_object" "error" {
   etag         = filemd5("${path.module}/files/error.html")
 }
 
+# The image to display
 resource "aws_s3_bucket_object" "logo" {
   bucket       = aws_s3_bucket.website_bucket.id
   acl          = "public-read"
