@@ -44,15 +44,15 @@ resource "aws_s3_bucket_policy" "website" {
 }
 
 resource "aws_s3_bucket" "subdomain" {
-  bucket = "www.${local.name}.com"
+  bucket = "www.${local.domain_name}"
   acl    = "public-read"
 
   website {
-    redirect_all_requests_to = "http://wundaboy.com"
+    redirect_all_requests_to = "http://${local.domain_name}"
   }
 
   tags = {
-    Name    = "${local.name}-redirect-bucket"
-    Project = "${local.name}.com"
+    Name    = "${local.domain_name}-redirect-bucket"
+    Project = "${local.domain_name}.com"
   }
 }

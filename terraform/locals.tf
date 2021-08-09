@@ -1,3 +1,3 @@
 locals {
-  name = "wundaboy"
+  domain_name = "wundaboy.com"
 }
