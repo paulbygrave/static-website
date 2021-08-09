@@ -1,2 +1,3 @@
 # static-website
-A static website serviced by AWS S3
+
+Created to fulfil a personal challenge.
