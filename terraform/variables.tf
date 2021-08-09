@@ -1,3 +1,3 @@
-variable domain {
-  "wundaboy.com"
+variable "domain" {
+  default = "wundaboy.com"
 }
