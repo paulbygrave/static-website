@@ -1,7 +1,7 @@
 # Cloudfront distribution for main s3 site.
 resource "aws_cloudfront_distribution" "www_s3_distribution" {
   origin {
-    domain_name = aws_s3_bucket.website.website_endpoint
+    domain_name = aws_s3_bucket.website_bucket.website_endpoint
     origin_id   = "S3-www.${var.domain}"
 
     custom_origin_config {
@@ -79,7 +79,7 @@ resource "aws_cloudfront_distribution" "root_s3_distribution" {
   enabled         = true
   is_ipv6_enabled = true
 
-  aliases = [var.domain_name]
+  aliases = [var.domain]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]

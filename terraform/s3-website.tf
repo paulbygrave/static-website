@@ -15,7 +15,7 @@ resource "aws_s3_bucket" "website_bucket" {
   versioning {
     enabled = true
   }
-  
+
   tags = {
     Name    = "${var.domain}-website-bucket"
     Project = "${var.domain}"
@@ -44,7 +44,7 @@ resource "aws_s3_bucket_policy" "website" {
 }
 
 resource "aws_s3_bucket" "root_bucket" {
-  bucket = "${var.domain}"
+  bucket = var.domain
   acl    = "public-read"
 
   website {
