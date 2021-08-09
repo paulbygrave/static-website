@@ -13,3 +13,10 @@ resource "aws_s3_bucket_object" "error" {
   content_type = "text/html"
   etag = filemd5("${path.module}/files/error.html")
 }
+
+resource "aws_s3_bucket_object" "logo" {
+  bucket = aws_s3_bucket.website.id
+  key    = "checkout2.png"
+  source = "${path.module}/files/checkout2.png"
+  etag = filemd5("${path.module}/files/checkout2.png")
+}
