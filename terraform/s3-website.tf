@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "website" {
-  bucket = "${local.name}-website.paulbygrave.com"
+  bucket = "${local.name}-website"
   acl    = "public-read"
 
   website {
