@@ -8,7 +8,7 @@ resource "aws_s3_bucket" "website" {
   }
 
   logging {
-    target_bucket = aws_s3_bucket.log_bucket.id
+    target_bucket = aws_s3_bucket.logs.id
     target_prefix = "log/"
   }
 
